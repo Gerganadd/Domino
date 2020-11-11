@@ -119,7 +119,7 @@ public class DominoTile {
 					result += rightSide[row][col - ARR_SIZE];
 				}
 			}
-			result += "/n";
+			result += "\n";
 		}
 		
 		return result;
