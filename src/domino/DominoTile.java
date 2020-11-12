@@ -111,7 +111,7 @@ public class DominoTile {
 		for(int i = 0 ; i <= points && points != 0; i+=2)
 		{
 			dominoArray[i][i] = '*';
-			if(i >= 2 && points == 4)
+			if(i >= 2 && points > 2)
 			{
 				dominoArray[0][2] = '*';
 				dominoArray[2][0] = '*';
