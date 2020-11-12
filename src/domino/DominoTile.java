@@ -74,7 +74,7 @@ public class DominoTile {
 	{
 		char[][] dominoArray = new char[ARR_SIZE][ARR_SIZE];
 		
-		if (points != 1)
+		/*if (points != 1)
 		{
 			if(points >= 2)
 			{
@@ -96,6 +96,28 @@ public class DominoTile {
 		}
 		
 		if (points % 2 == 1) dominoArray[1][1] = '*';
+		*/
+		
+		if(points == 6)
+		{
+			dominoArray[1][0] = '*';
+			dominoArray[1][2] = '*';
+		}
+		if (points % 2 == 1)
+		{
+			dominoArray[1][1] = '*';
+			points--;
+		}
+		for(int i = 0 ; i <= points && points != 0; i+=2)
+		{
+			dominoArray[i][i] = '*';
+			if(i >= 2 && points == 4)
+			{
+				dominoArray[0][2] = '*';
+				dominoArray[2][0] = '*';
+				break;
+			}
+		}
 		
 		return dominoArray;
 	}
