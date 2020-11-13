@@ -8,6 +8,9 @@ public class DominoTile {
 	public final int MAX = 6;
 	public final int ARR_SIZE = 3;
 	
+	public final int LEFT = 1;
+	public final int RIGHT = 0;
+	
 	public DominoTile()
 	{
 		this.leftNumber = MIN;
@@ -49,8 +52,8 @@ public class DominoTile {
 	public void swap()
 	{
 		int temp = this.leftNumber;
-		leftNumber = this.rightNumber;
-		rightNumber = temp;
+		this.leftNumber = this.rightNumber;
+		this.rightNumber = temp;
 	}
 	
 	public boolean isEquals(DominoTile someDominoTile)
@@ -62,7 +65,7 @@ public class DominoTile {
 		}
 		else 
 		{
-			swap();
+			someDominoTile.swap();
 			if (this.leftNumber == someDominoTile.getLeftNumber()
 					&& this.rightNumber == someDominoTile.getRightNumber()) return true;
 			else return false;
@@ -70,48 +73,56 @@ public class DominoTile {
 
 	}
 	
+	public boolean areEqualSides(DominoTile someDominoTile, int side)
+	{
+		if (side == LEFT)
+		{
+			if (this.leftNumber == someDominoTile.getRightNumber())
+			{
+				return true;
+			}
+			else if (this.leftNumber == someDominoTile.getLeftNumber())
+			{
+				someDominoTile.swap();
+				return true;
+			}
+		}
+		else if (side == RIGHT)
+		{
+			if (this.rightNumber == someDominoTile.getLeftNumber())
+			{
+				return true;
+			}
+			else if (this.rightNumber == someDominoTile.getRightNumber())
+			{
+				someDominoTile.swap();
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
 	public char[][] makeDominoSide(int points)
 	{
 		char[][] dominoArray = new char[ARR_SIZE][ARR_SIZE];
 		
-		/*if (points != 1)
-		{
-			if(points >= 2)
-			{
-				dominoArray[0][0] = '*';
-				dominoArray[2][2] = '*';
-			}
-			
-			if(points >= 4)
-			{
-				dominoArray[0][2] = '*';
-				dominoArray[2][0] = '*';
-			}
-			
-			if(points == 6)
-			{
-				dominoArray[1][0] = '*';
-				dominoArray[1][2] = '*';
-			}
-		}
-		
-		if (points % 2 == 1) dominoArray[1][1] = '*';
-		*/
-		
-		if(points == 6)
+		if (points == 6)
 		{
 			dominoArray[1][0] = '*';
 			dominoArray[1][2] = '*';
 		}
+		
 		if (points % 2 == 1)
 		{
 			dominoArray[1][1] = '*';
 			points--;
 		}
+		
 		for(int i = 0 ; i <= points && points != 0; i+=2)
 		{
 			dominoArray[i][i] = '*';
-			if(i >= 2 && points > 2)
+			if (i >= 2 && points > 2)
 			{
 				dominoArray[0][2] = '*';
 				dominoArray[2][0] = '*';
@@ -121,7 +132,7 @@ public class DominoTile {
 		
 		return dominoArray;
 	}
-	
+
 	public String toString()
 	{
 		char[][] leftSide = makeDominoSide(this.leftNumber);
@@ -132,7 +143,7 @@ public class DominoTile {
 		{
 			for(int col = 0 ; col <  2 * ARR_SIZE ; col++)
 			{
-				if(col < ARR_SIZE)
+				if (col < ARR_SIZE)
 				{
 					result += leftSide[row][col];
 				}
@@ -141,7 +152,8 @@ public class DominoTile {
 					result += rightSide[row][col - ARR_SIZE];
 				}
 			}
-			result += "\n";
+			
+		    result += "\n";
 		}
 		
 		return result;
