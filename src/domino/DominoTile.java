@@ -133,11 +133,11 @@ public class DominoTile {
 		return dominoArray;
 	}
 
-	public String toString()
+	public char[][] makeTile()
 	{
 		char[][] leftSide = makeDominoSide(this.leftNumber);
 		char[][] rightSide = makeDominoSide(this.rightNumber);
-		String result = "";
+		char[][] tile = new char[ARR_SIZE][ARR_SIZE * 2];
 		
 		for(int row = 0 ; row < ARR_SIZE ; row++)
 		{
@@ -145,15 +145,31 @@ public class DominoTile {
 			{
 				if (col < ARR_SIZE)
 				{
-					result += leftSide[row][col];
+					tile[row][col] = leftSide[row][col];
 				}
 				else 
 				{
-					result += rightSide[row][col - ARR_SIZE];
+					tile[row][col] = rightSide[row][col - ARR_SIZE];
 				}
 			}
+		}
+		
+		return tile;
+	}
+	
+	public String toString()
+	{
+		char[][] tile = makeTile();
+		String result = "";
+		
+		for(int row = 0 ; row < ARR_SIZE ; row++)
+		{
+			for(int col = 0 ; col <  2 * ARR_SIZE ; col++)
+			{
+				result += tile[row][col];
+			}
 			
-		    result += "\n";
+		    //result += "\n";
 		}
 		
 		return result;
