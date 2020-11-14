@@ -54,16 +54,18 @@ public class DominoTable {
 	
 	public boolean addLeft(DominoTile someDominoTile)
 	{
-		if (isPosible() && table[0].areEqualSides(someDominoTile, LEFT))
+		if (table[0] == null)
+		{
+			table[0] = someDominoTile;
+		}
+		else if (isPosible() && table[0].areEqualSides(someDominoTile, LEFT))
 		{
 			move();
 			table[0] = someDominoTile;
 			return true;
 		}
-		else 
-		{
-			return false;
-		}
+		
+		return false;
 	}
 	
 	public void print()
@@ -73,7 +75,7 @@ public class DominoTable {
 		String secondRow = "";
 		String thirdRow = "";
 		
-		for(int i = 0 ; i <= this.lastElement ; i++)
+		for(int i = 0 ; i <= this.lastElement && table[i] != null; i++)
 		{
 			String element = table[i].toString();
 	
