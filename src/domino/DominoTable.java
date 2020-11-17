@@ -27,20 +27,18 @@ public class DominoTable {
 		{
 			if (table[lastElement] == null)
 			{
-				table[lastElement] = someDominoTile;
+				table[lastElement] = someDominoTile; 
+				return true;
 			}
 			else if (table[lastElement].areEqualSides(someDominoTile, RIGHT))
 			{		
 				lastElement++;
 				table[lastElement] = someDominoTile;
+				return true;
 			}
-			
-			return true;
 		}
-		else 
-		{
-			return false;
-		}
+		
+		return false;
 	}
 	
 	public void move()
@@ -57,6 +55,7 @@ public class DominoTable {
 		if (table[0] == null)
 		{
 			table[0] = someDominoTile;
+			return true;
 		}
 		else if (isPosible() && table[0].areEqualSides(someDominoTile, LEFT))
 		{

@@ -63,14 +63,13 @@ public class DominoTile {
 		{
 			return true;
 		}
-		else 
+		else if (this.leftNumber == someDominoTile.getRightNumber()
+				&& this.rightNumber == someDominoTile.getLeftNumber())
 		{
-			someDominoTile.swap();
-			if (this.leftNumber == someDominoTile.getLeftNumber()
-					&& this.rightNumber == someDominoTile.getRightNumber()) return true;
-			else return false;
+			 return true;
 		}
-
+		
+		return false;
 	}
 	
 	public boolean areEqualSides(DominoTile someDominoTile, int side)

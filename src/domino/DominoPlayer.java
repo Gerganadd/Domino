@@ -29,8 +29,10 @@ public class DominoPlayer {
 		{
 			i++;
 		}
-		if (number == i + 1) this.tilesInHands = number;
-		//else System.out.println("incorect input");
+		this.tilesInHands = i;
+		
+		if (number != i) 
+			System.out.println("incorect input - the tiles in player " + this.nickname + " must be " + i);
 	}
 	
 	public String getNickname()
@@ -57,6 +59,7 @@ public class DominoPlayer {
 	{
 		for(int i = 0 ; i < tiles.length ; i++)
 		{
+			if (tiles[i] == null) continue;
 			if (tiles[i].isEquals(t)) return i;
 		}
 		return -1;
@@ -65,32 +68,26 @@ public class DominoPlayer {
 	public void minus(int index)
 	{
 		tiles[index] = null;
-		setTilesInHands(this.tilesInHands--);
+		this.tilesInHands--;
 	}
 	
 	public void addTileAtLeft(DominoTile t)
 	{
-		if (getTileIndex(t) != -1)
-		{
-			int i = getTileIndex(t);
-			
-			if (table.addLeft(t))
-			{
-				minus(i);
-			}
+		int i = getTileIndex(t);
+		
+		if (i != -1 && table.addLeft(t))
+		{	
+			minus(i);
 		}
 	}
 	
 	public void addTileAtRight(DominoTile t)
 	{
-		if (getTileIndex(t) != -1)
+		int i = getTileIndex(t);
+		
+		if (i != -1 && table.addRight(t))
 		{
-			int i = getTileIndex(t);
-
-			if (table.addRight(t))
-			{
-				minus(i);
-			}
+			minus(i);	
 		}
 	}
 }
