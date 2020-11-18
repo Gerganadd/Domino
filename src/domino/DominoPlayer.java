@@ -65,7 +65,7 @@ public class DominoPlayer {
 		return -1;
 	}
 	
-	public void minus(int index)
+	private void minus(int index)
 	{
 		tiles[index] = null;
 		this.tilesInHands--;

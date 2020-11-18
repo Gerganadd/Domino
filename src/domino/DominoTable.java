@@ -15,7 +15,7 @@ public class DominoTable {
 		lastElement = 0; 
 	}
 	
-	public boolean isPosible()
+	private boolean isPosible()
 	{
 		if (lastElement + 1  < ARRAY_LENGHT) return true;
 		else return false;
@@ -41,7 +41,7 @@ public class DominoTable {
 		return false;
 	}
 	
-	public void move()
+	private void move()
 	{
 		for(int i = lastElement + 1 ; i > 0 ; i--)
 		{

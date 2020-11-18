@@ -49,7 +49,7 @@ public class DominoTile {
 		return this.rightNumber;
 	}
 	
-	public void swap()
+	private void swap() 
 	{
 		int temp = this.leftNumber;
 		this.leftNumber = this.rightNumber;
@@ -102,7 +102,7 @@ public class DominoTile {
 		
 	}
 	
-	public char[][] makeDominoSide(int points)
+	private char[][] makeDominoSide(int points) 
 	{
 		char[][] dominoArray = new char[ARR_SIZE][ARR_SIZE];
 		
@@ -132,7 +132,7 @@ public class DominoTile {
 		return dominoArray;
 	}
 
-	public char[][] makeTile()
+	private char[][] makeTile()
 	{
 		char[][] leftSide = makeDominoSide(this.leftNumber);
 		char[][] rightSide = makeDominoSide(this.rightNumber);
