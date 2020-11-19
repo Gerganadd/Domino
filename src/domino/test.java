@@ -17,7 +17,7 @@ public class test {
 		//table.print();
 		
 		DominoTile[] tiles = {tile1, tile2, tile3};
-		DominoPlayer firstPlayer = new DominoPlayer("Bob_13_17", tiles, 2 , table);
+		DominoPlayer firstPlayer = new DominoPlayer("Bob_13_17", tiles, 3 , table);
 		firstPlayer.addTileAtRight(tile3);
 		firstPlayer.addTileAtLeft(tile1);
 		firstPlayer.addTileAtLeft(tile3);// iska li da se dobawi

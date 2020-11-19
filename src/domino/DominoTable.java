@@ -1,6 +1,6 @@
 package domino;
 
-public class DominoTable {
+public class DominoTable implements TableEventListener{
 	public final int ARRAY_LENGHT = 28;
 	public final int LEFT = 1;
 	public final int RIGHT = 0;
@@ -8,6 +8,7 @@ public class DominoTable {
 	
 	private DominoTile[] table;
 	private int lastElement;
+	private TableEventListener tableEventListener;
 	
 	public DominoTable()
 	{
@@ -15,30 +16,20 @@ public class DominoTable {
 		lastElement = 0; 
 	}
 	
+	public void onTableChanged(DominoTable table)
+	{
+		//add
+	}
+	
+	public void addTableEventListener(TableEventListener listener)
+	{
+		this.tableEventListener = listener;
+	}
+	
 	private boolean isPosible()
 	{
 		if (lastElement + 1  < ARRAY_LENGHT) return true;
 		else return false;
-	}
-	
-	public boolean addRight(DominoTile someDominoTile)
-	{
-		if (isPosible())
-		{
-			if (table[lastElement] == null)
-			{
-				table[lastElement] = someDominoTile; 
-				return true;
-			}
-			else if (table[lastElement].areEqualSides(someDominoTile, RIGHT))
-			{		
-				lastElement++;
-				table[lastElement] = someDominoTile;
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	private void move()
@@ -62,6 +53,34 @@ public class DominoTable {
 			move();
 			table[0] = someDominoTile;
 			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean addRight(DominoTile someDominoTile)
+	{
+		//not sure
+		if(tableEventListener != null)
+		{
+			DominoTable currentTable = new DominoTable();
+			this.tableEventListener.onTableChanged(currentTable);
+		}
+		//!!!
+		
+		if (isPosible())
+		{
+			if (table[lastElement] == null)
+			{
+				table[lastElement] = someDominoTile; 
+				return true;
+			}
+			else if (table[lastElement].areEqualSides(someDominoTile, RIGHT))
+			{		
+				lastElement++;
+				table[lastElement] = someDominoTile;
+				return true;
+			}
 		}
 		
 		return false;

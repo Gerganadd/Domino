@@ -32,7 +32,8 @@ public class DominoPlayer {
 		this.tilesInHands = i;
 		
 		if (number != i) 
-			System.out.println("incorect input - the tiles in player " + this.nickname + " must be " + i);
+			throw new RuntimeException(String.format("incorect input - the tiles in player must be %d", i));
+			
 	}
 	
 	public String getNickname()
