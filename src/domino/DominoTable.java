@@ -1,6 +1,6 @@
 package domino;
 
-public class DominoTable implements TableEventListener{
+public class DominoTable {
 	public final int ARRAY_LENGHT = 28;
 	public final int LEFT = 1;
 	public final int RIGHT = 0;
@@ -16,14 +16,23 @@ public class DominoTable implements TableEventListener{
 		lastElement = 0; 
 	}
 	
-	public void onTableChanged(DominoTable table)
+	public DominoTile[] getTable()
 	{
-		//add
+		return this.table;
 	}
 	
 	public void addTableEventListener(TableEventListener listener)
 	{
-		this.tableEventListener = listener;
+		if (this.tableEventListener != null)
+		{
+			this.tableEventListener = listener;
+		}
+	}
+	
+	private void changeListener() {
+		if (this.tableEventListener != null) {
+			this.tableEventListener.onTableChanged(this);
+		}
 	}
 	
 	private boolean isPosible()
@@ -46,12 +55,14 @@ public class DominoTable implements TableEventListener{
 		if (table[0] == null)
 		{
 			table[0] = someDominoTile;
+			this.changeListener();
 			return true;
 		}
 		else if (isPosible() && table[0].areEqualSides(someDominoTile, LEFT))
 		{
 			move();
 			table[0] = someDominoTile;
+			this.changeListener();
 			return true;
 		}
 		
@@ -60,25 +71,19 @@ public class DominoTable implements TableEventListener{
 	
 	public boolean addRight(DominoTile someDominoTile)
 	{
-		//not sure
-		if(tableEventListener != null)
-		{
-			DominoTable currentTable = new DominoTable();
-			this.tableEventListener.onTableChanged(currentTable);
-		}
-		//!!!
-		
 		if (isPosible())
 		{
 			if (table[lastElement] == null)
 			{
 				table[lastElement] = someDominoTile; 
+				this.changeListener();
 				return true;
 			}
 			else if (table[lastElement].areEqualSides(someDominoTile, RIGHT))
 			{		
 				lastElement++;
 				table[lastElement] = someDominoTile;
+				this.changeListener();
 				return true;
 			}
 		}
@@ -88,7 +93,6 @@ public class DominoTable implements TableEventListener{
 	
 	public void print()
 	{
-		
 		String firstRow = "";
 		String secondRow = "";
 		String thirdRow = "";
@@ -105,6 +109,5 @@ public class DominoTable implements TableEventListener{
 		System.out.println(firstRow);
 		System.out.println(secondRow);
 		System.out.println(thirdRow);
-		
 	}
 }

@@ -132,7 +132,7 @@ public class DominoTile {
 		return dominoArray;
 	}
 
-	private char[][] makeTile()
+	public char[][] makeTile()
 	{
 		char[][] leftSide = makeDominoSide(this.leftNumber);
 		char[][] rightSide = makeDominoSide(this.rightNumber);
