@@ -23,13 +23,13 @@ public class DominoTable {
 	
 	public void addTableEventListener(TableEventListener listener)
 	{
-		if (this.tableEventListener != null)
+		if (listener != null) 
 		{
 			this.tableEventListener = listener;
 		}
 	}
 	
-	private void changeListener() {
+	private void onChangeListener() {
 		if (this.tableEventListener != null) {
 			this.tableEventListener.onTableChanged(this);
 		}
@@ -55,14 +55,14 @@ public class DominoTable {
 		if (table[0] == null)
 		{
 			table[0] = someDominoTile;
-			this.changeListener();
+			this.onChangeListener();
 			return true;
 		}
 		else if (isPosible() && table[0].areEqualSides(someDominoTile, LEFT))
 		{
 			move();
 			table[0] = someDominoTile;
-			this.changeListener();
+			this.onChangeListener();
 			return true;
 		}
 		
@@ -76,14 +76,14 @@ public class DominoTable {
 			if (table[lastElement] == null)
 			{
 				table[lastElement] = someDominoTile; 
-				this.changeListener();
+				this.onChangeListener();
 				return true;
 			}
 			else if (table[lastElement].areEqualSides(someDominoTile, RIGHT))
 			{		
 				lastElement++;
 				table[lastElement] = someDominoTile;
-				this.changeListener();
+				this.onChangeListener();
 				return true;
 			}
 		}
