@@ -1,6 +1,6 @@
 package domino;
 
-import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 public class test {
 
@@ -11,13 +11,18 @@ public class test {
 		
 		DominoTable table = new DominoTable();
 		DominoTile[] tiles = {tile1, tile2, tile3};
-		DominoPlayer firstPlayer = new DominoPlayer("Bob_13_17", tiles, 3 , table);
+		DominoPlayer firstPlayer = new DominoPlayer("Bob_13_17", tiles, table);
 		firstPlayer.addTileAtRight(tile3);
 		firstPlayer.addTileAtLeft(tile1);
 		firstPlayer.addTileAtLeft(tile3);
 		firstPlayer.addTileAtRight(tile2);
 		firstPlayer.addTileAtLeft(tile2); 
 		firstPlayer.getTable().print();
+		
+		String[] options= {null, "true", "false"};
+		String item = (String)(JOptionPane.showInputDialog(null, "Articulated", "Choose", JOptionPane.PLAIN_MESSAGE,null,options, options[0]));
+		boolean articulated = Boolean.parseBoolean(item);
+		System.out.println(articulated);
 		
 	}
 

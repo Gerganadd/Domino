@@ -22,11 +22,7 @@ public class DominoTableView extends JComponent {
 	   public final int POINT_R = 10;
 	   public final int SPACE = 15;
 	   
-	   public final TileColor color = TileColor.CORN_SILK;
-	   public final Color TILE_COLOR = color.getColor();
-	  
-	   public final static JFrameBackgroundColors background = JFrameBackgroundColors.MEDIUM_SEA_GREEN;
-	   public final static Color JFRAME_BACKGROUND = background.getColor();
+	   public final Color TILE_COLOR = Colors.CORN_SILK;
 	   
 	   public DominoTableView(DominoTable table)
 	   {

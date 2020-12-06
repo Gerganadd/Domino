@@ -6,11 +6,11 @@ public class DominoPlayer {
 	private int tilesInHands; 
 	private DominoTable table;
 	
-	public DominoPlayer(String nickname, DominoTile[] tiles, int tilesInHands, DominoTable table)
+	public DominoPlayer(String nickname, DominoTile[] tiles, DominoTable table)
 	{
 		setNickname(nickname);
 		this.tiles = tiles;
-		setTilesInHands(tilesInHands);
+		setTilesInHands();
 		this.table = table;
 	}
 	
@@ -22,18 +22,14 @@ public class DominoPlayer {
 		}
 	}
 	
-	public void setTilesInHands(int number)
+	public void setTilesInHands()
 	{
 		int i = 0 ;
 		while(i < tiles.length && tiles[i] != null)
 		{
 			i++;
 		}
-		this.tilesInHands = i;
-		
-		if (number != i) 
-			throw new RuntimeException(String.format("incorect input - the tiles in player must be %d", i));
-			
+		this.tilesInHands = i;	
 	}
 	
 	public String getNickname()
