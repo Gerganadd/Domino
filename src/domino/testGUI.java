@@ -33,7 +33,7 @@ public class testGUI {
 		      app.setVisible(true);
 		      
 		      app.add(board);
-		      
+		      /*
 		      JButton btnAddLeft = new JButton("Add Left");
 		      btnAddLeft.setBounds(70, 480, 100, 30);
 		      //btnAddLeft.setDefaultLocale(null);
@@ -50,7 +50,7 @@ public class testGUI {
 		      int nicknameLenght = lblNickname.getText().length();
 		      int x = ((BOARD_WIDTH / 2) - 7*(nicknameLenght / 2));
 		      lblNickname.setBounds(x, 500, 100, 30);
-		      app.add(lblNickname);
+		      app.add(lblNickname);*/
 		      
 		      app.repaint();
 	   }

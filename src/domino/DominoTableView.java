@@ -24,6 +24,19 @@ public class DominoTableView extends JComponent {
 	   
 	   public final Color TILE_COLOR = Colors.CORN_SILK;
 	   
+	   public DominoTableView()
+	   {
+		   gameBoard.addTableEventListener(new TableEventListener() 
+		   {
+
+			@Override
+			public void onTableChanged(DominoTable dominotable) 
+			{
+				DominoTableView.this.repaint();
+			}
+		   });
+	   }
+	   
 	   public DominoTableView(DominoTable table)
 	   {
 		   this.gameBoard = table;
