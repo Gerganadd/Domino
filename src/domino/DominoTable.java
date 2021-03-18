@@ -1,5 +1,7 @@
 package domino;
 
+import interfaces.TableEventListener;
+
 public class DominoTable {
 	public final int ARRAY_LENGHT = 28;
 	public final int LEFT = 1;

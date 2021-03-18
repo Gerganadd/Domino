@@ -1,10 +1,15 @@
-package domino;
+package tests;
 
 import javax.swing.JOptionPane;
 
-public class test {
+import domino.DominoPlayer;
+import domino.DominoTable;
+import domino.DominoTile;
 
-	public static void main(String[] args) {
+public class Test
+{
+	public static void main(String[] args) 
+	{
 		DominoTile tile1 = new DominoTile(3,4);
 		DominoTile tile2 = new DominoTile(5,4);
 		DominoTile tile3 = new DominoTile(3,1); //1 3
@@ -25,5 +30,4 @@ public class test {
 		System.out.println(articulated);
 		
 	}
-
 }

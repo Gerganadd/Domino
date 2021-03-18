@@ -1,4 +1,4 @@
-package domino;
+package views;
 
 import java.awt.Color;
 

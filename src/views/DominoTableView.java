@@ -1,10 +1,13 @@
-package domino;
+package views;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+
+import domino.DominoTable;
+import domino.DominoTile;
+import interfaces.TableEventListener;
 
 public class DominoTableView extends JComponent {
 	

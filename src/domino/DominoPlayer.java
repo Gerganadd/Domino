@@ -2,7 +2,7 @@ package domino;
 
 public class DominoPlayer {
 	private String nickname; 
-	private DominoTile[] tiles;
+	private DominoTile[] tiles; //change the data structure
 	private int tilesInHands; 
 	private DominoTable table;
 	
