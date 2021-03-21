@@ -1,6 +1,7 @@
 package dataStructures;
 
 import interfaces.DeckInterface;
+import interfaces.Iterator;
 
 public class Deck<T> implements DeckInterface<T>
 {
@@ -72,6 +73,36 @@ public class Deck<T> implements DeckInterface<T>
 		{
 			System.out.println(current.data);
 			current = current.next;
+		}
+		
+	}
+	
+	public Iterator<T> getIterator()
+	{
+		return new DeckIterator();
+	}
+	
+	private class DeckIterator implements Iterator<T>
+	{
+		private Node<T> current;
+		
+		DeckIterator()
+		{
+			current = left;
+		}
+
+		@Override
+		public boolean hasNext() 
+		{
+			return current.next != null;
+		}
+
+		@Override
+		public T next() 
+		{
+			Node<T> result = current;
+			current = current.next;
+			return result.data;
 		}
 		
 	}
