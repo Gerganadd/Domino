@@ -5,8 +5,10 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
+import dataStructures.Deck;
 import domino.DominoTable;
 import domino.DominoTile;
+import interfaces.Iterator;
 import interfaces.TableEventListener;
 
 public class DominoTableView extends JComponent {
@@ -79,19 +81,23 @@ public class DominoTableView extends JComponent {
 	   }
 	   
 	   @Override
-	   public void paintComponent(Graphics g) {
+	   public void paintComponent(Graphics g) 
+	   {
 	      super.paintComponent(g);
-	      DominoTile[] table = this.gameBoard.getTable();
+	      
+	      Deck<DominoTile> table = this.gameBoard.getTable();
 	      int tileX = DEFAULT_TILE_X;
 		  int tileY = DEFAULT_TILE_Y;
-		   
-	      for (DominoTile tile : table)
-	      {
-	    	  if (tile == null) break;
-	    	  
-	    	  drawTile(tileX, tileY, g);
-	    	  makePointsOnTile(tileX , tileY , tile, g);
-	    	  tileX += TILE_WIDGTH + 3;  
-	      }
+		  
+		  //print tiles
+		  Iterator<DominoTile> i = table.getIterator();
+		 
+		  while (i.hasNext())
+		  {
+			  drawTile(tileX, tileY, g);
+	    	  makePointsOnTile(tileX , tileY , i.next(), g);
+	    	  tileX += TILE_WIDGTH + 3; 
+		  }
+		  
 	   }
 }
