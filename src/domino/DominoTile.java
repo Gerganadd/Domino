@@ -168,7 +168,7 @@ public class DominoTile {
 				result += tile[row][col];
 			}
 			
-		    //result += "\n";
+		    result += "\n";
 		}
 		
 		return result;
