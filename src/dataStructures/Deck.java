@@ -5,8 +5,8 @@ import interfaces.Iterator;
 
 public class Deck<T> implements DeckInterface<T>
 {
-	Node<T> left;
-	Node<T> right;
+	private Node<T> left;
+	private Node<T> right;
 	
 	public Deck()
 	{
@@ -55,9 +55,10 @@ public class Deck<T> implements DeckInterface<T>
 	{
 		if(isEmpty())
 		{
-			addleft(item);
+			this.left = this.right = new Node(item);
+			return;
 		}
-		else
+		else 
 		{
 			this.right.next = new Node<>(item);
 			this.right = this.right.next;
