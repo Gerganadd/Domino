@@ -1,24 +1,23 @@
 package domino;
 
+import dataStructures.Deck;
 import interfaces.TableEventListener;
 
-public class DominoTable {
-	public final int ARRAY_LENGHT = 28;
+public class DominoTable 
+{
 	public final int LEFT = 1;
 	public final int RIGHT = 0;
 	public final int TILE_SIZE_ROW = 6;
 	
-	private DominoTile[] table;
-	private int lastElement;
+	private Deck<DominoTile> table; 
 	private TableEventListener tableEventListener;
 	
 	public DominoTable()
 	{
-		this.table = new DominoTile[ARRAY_LENGHT];
-		lastElement = 0; 
+		this.table = new Deck();
 	}
 	
-	public DominoTile[] getTable()
+	public Deck<DominoTile> getTable()
 	{
 		return this.table;
 	}
@@ -31,85 +30,37 @@ public class DominoTable {
 		}
 	}
 	
-	private void onChangeListener() {
-		if (this.tableEventListener != null) {
+	private void onChangeListener() 
+	{
+		if (this.tableEventListener != null) 
+		{
 			this.tableEventListener.onTableChanged(this);
 		}
 	}
 	
-	private boolean isPosible()
+	public void addLeft(DominoTile someDominoTile)
 	{
-		if (lastElement + 1  < ARRAY_LENGHT) return true;
-		else return false;
+		if (table.isEmpty() || table.getLeft().areEqualSides(someDominoTile, LEFT))
+		{
+			this.table.addleft(someDominoTile);
+			this.onChangeListener();
+		}
 	}
 	
-	private void move()
+	public void addRight(DominoTile someDominoTile)
 	{
-		for(int i = lastElement + 1 ; i > 0 ; i--)
+		if (table.isEmpty() || table.getRight().areEqualSides(someDominoTile, RIGHT))
 		{
-			table[i] = table[i-1];
-		}
-		lastElement++;
-	}
-	
-	public boolean addLeft(DominoTile someDominoTile)
-	{
-		if (table[0] == null)
-		{
-			table[0] = someDominoTile;
+			this.table.addRight(someDominoTile);
 			this.onChangeListener();
-			return true;
-		}
-		else if (isPosible() && table[0].areEqualSides(someDominoTile, LEFT))
-		{
-			move();
-			table[0] = someDominoTile;
-			this.onChangeListener();
-			return true;
 		}
 		
-		return false;
-	}
-	
-	public boolean addRight(DominoTile someDominoTile)
-	{
-		if (isPosible())
-		{
-			if (table[lastElement] == null)
-			{
-				table[lastElement] = someDominoTile; 
-				this.onChangeListener();
-				return true;
-			}
-			else if (table[lastElement].areEqualSides(someDominoTile, RIGHT))
-			{		
-				lastElement++;
-				table[lastElement] = someDominoTile;
-				this.onChangeListener();
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	public void print()
 	{
-		String firstRow = "";
-		String secondRow = "";
-		String thirdRow = "";
+		Deck<DominoTile> copy = this.table;
 		
-		for(int i = 0 ; i <= this.lastElement && table[i] != null; i++)
-		{
-			String element = table[i].toString();
-	
-			firstRow += element.substring(0, TILE_SIZE_ROW); // 0-6
-			secondRow += element.substring(TILE_SIZE_ROW, TILE_SIZE_ROW * 2); // 6-12
-			thirdRow += element.substring(TILE_SIZE_ROW * 2, TILE_SIZE_ROW * 3); // 12-18
-		}
-		
-		System.out.println(firstRow);
-		System.out.println(secondRow);
-		System.out.println(thirdRow);
+		copy.print();
 	}
 }
