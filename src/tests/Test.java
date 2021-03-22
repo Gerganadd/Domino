@@ -5,29 +5,30 @@ import javax.swing.JOptionPane;
 import domino.DominoPlayer;
 import domino.DominoTable;
 import domino.DominoTile;
+import interfaces.Iterator;
 
 public class Test
 {
 	public static void main(String[] args) 
 	{
-		DominoTile tile1 = new DominoTile(3,4);
-		DominoTile tile2 = new DominoTile(5,4);
-		DominoTile tile3 = new DominoTile(3,1); //1 3
+		DominoTile tile1 = new DominoTile(5,3);
+		DominoTile tile2 = new DominoTile(4,5);
+		DominoTile tile3 = new DominoTile(6,3);
 		
-		DominoTable table = new DominoTable();
-		DominoTile[] tiles = {tile1, tile2, tile3};
-		DominoPlayer firstPlayer = new DominoPlayer("Bob_13_17", tiles, table);
-		firstPlayer.addTileAtRight(tile3);
-		firstPlayer.addTileAtLeft(tile1);
-		firstPlayer.addTileAtLeft(tile3);
-		firstPlayer.addTileAtRight(tile2);
-		firstPlayer.addTileAtLeft(tile2); 
-		firstPlayer.getTable().print();
+		DominoTable gameBoard = new DominoTable();
+		gameBoard.addRight(tile1);
+		gameBoard.addRight(tile2);
+		gameBoard.addRight(tile3);
+		gameBoard.addLeft(tile2);
 		
-		String[] options= {null, "true", "false"};
-		String item = (String)(JOptionPane.showInputDialog(null, "Articulated", "Choose", JOptionPane.PLAIN_MESSAGE,null,options, options[0]));
-		boolean articulated = Boolean.parseBoolean(item);
-		System.out.println(articulated);
+		//gameBoard.print();
 		
+		//don't take the last element
+		Iterator<DominoTile> i = gameBoard.getTable().getIterator(); //don't take the last element
+		while(i.hasNext())
+		{
+			DominoTile t = i.next();
+			System.out.println(t);
+		}
 	}
 }
