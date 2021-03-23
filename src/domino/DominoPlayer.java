@@ -1,16 +1,17 @@
 package domino;
 
-public class DominoPlayer {
+import dataStructures.LinkedList;
+
+public class DominoPlayer 
+{
 	private String nickname; 
-	private DominoTile[] tiles; //change the data structure
-	private int tilesInHands; 
+	private LinkedList<DominoTile> tilesOfPlayer; 
 	private DominoTable table;
 	
-	public DominoPlayer(String nickname, DominoTile[] tiles, DominoTable table)
+	public DominoPlayer(String nickname, LinkedList<DominoTile> tiles, DominoTable table)
 	{
 		setNickname(nickname);
-		this.tiles = tiles;
-		setTilesInHands();
+		this.tilesOfPlayer = tiles;
 		this.table = table;
 	}
 	
@@ -22,29 +23,14 @@ public class DominoPlayer {
 		}
 	}
 	
-	public void setTilesInHands()
-	{
-		int i = 0 ;
-		while(i < tiles.length && tiles[i] != null)
-		{
-			i++;
-		}
-		this.tilesInHands = i;	
-	}
-	
 	public String getNickname()
 	{
 		return this.nickname;
 	}
 	
-	public DominoTile[] gettiles()
+	public LinkedList<DominoTile> getTiles()
 	{
-		return this.tiles;
-	}
-	
-	public int getTilesInHands()
-	{
-		return this.tilesInHands;
+		return this.tilesOfPlayer;
 	}
 	
 	public DominoTable getTable()
@@ -52,39 +38,15 @@ public class DominoPlayer {
 		return this.table;
 	}
 	
-	private int getTileIndex(DominoTile t)
-	{
-		for(int i = 0 ; i < tiles.length ; i++)
-		{
-			if (tiles[i] == null) continue;
-			if (tiles[i].isEquals(t)) return i;
-		}
-		return -1;
-	}
-	
-	private void minus(int index)
-	{
-		tiles[index] = null;
-		this.tilesInHands--;
-	}
-	
 	public void addTileAtLeft(DominoTile t)
 	{
-		int i = getTileIndex(t);
-		
-		if (i != -1 && table.addLeft(t))
-		{	
-			minus(i);
-		}
+		this.table.addLeft(t);
+		tilesOfPlayer.remove(t);
 	}
 	
 	public void addTileAtRight(DominoTile t)
 	{
-		int i = getTileIndex(t);
-		
-		if (i != -1 && table.addRight(t))
-		{
-			minus(i);	
-		}
+		this.table.addRight(t);
+		tilesOfPlayer.remove(t);
 	}
 }

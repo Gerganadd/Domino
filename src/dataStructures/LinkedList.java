@@ -2,7 +2,7 @@ package dataStructures;
 
 import interfaces.List;
 
-public class LinkedList<T extends Comparable<T>> implements List
+public class LinkedList<T> implements List<T>
 {
 	Node <T> linkedList;
 	int lenght;
@@ -144,6 +144,11 @@ public class LinkedList<T extends Comparable<T>> implements List
 	public void clear() 
 	{
 		this.linkedList = null;
+	}
+	
+	public int getLenght()
+	{
+		return this.lenght;
 	}
 	
 	public void print() 
