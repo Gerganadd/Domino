@@ -21,10 +21,7 @@ public class Test
 		gameBoard.addRight(tile3);
 		gameBoard.addLeft(tile2);
 		
-		//gameBoard.print();
-		
-		//don't take the last element
-		Iterator<DominoTile> i = gameBoard.getTable().getIterator(); //don't take the last element
+		Iterator<DominoTile> i = gameBoard.getTable().getIterator(); 
 		while(i.hasNext())
 		{
 			DominoTile t = i.next();

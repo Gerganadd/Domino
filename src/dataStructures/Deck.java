@@ -95,15 +95,15 @@ public class Deck<T> implements DeckInterface<T>
 		@Override
 		public boolean hasNext() 
 		{
-			return current.next != null;
+			return current != null;
 		}
 
 		@Override
 		public T next() 
 		{
-			Node<T> result = current;
+			T result = current.data;
 			current = current.next;
-			return result.data;
+			return result;
 		}
 		
 	}
