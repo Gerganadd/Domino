@@ -16,18 +16,19 @@ public class DominoTableView extends JComponent {
 	   private DominoTable gameBoard;
 	  
 	   public final static int BOARD_WIDTH = 900;
-	   public final static int BOARD_HIGHT = 600;
+	   public final static int BOARD_HIGHT = 700;
 	   
-	   public final int TILE_WIDGTH = 150;
-	   public final int TILE_HIGHT = 70;
+	   public final static int TILE_WIDGTH = 150;
+	   public final static int TILE_HIGHT = 70;
+	   public final static int POINT_R = 10;
+	   public final static int SPACE = 15;
+	   
+	   public final static Color TILE_COLOR = Colors.CORN_SILK;
+	   
 	   public final int DEFAULT_TILE_X = 10;
 	   public final int DEFAULT_TILE_Y = (BOARD_HIGHT / 2) - TILE_HIGHT;
 	   public final int DEFAULT_POINT_X = 5;
 	   public final int DEFAULT_POINT_Y = 5;
-	   public final int POINT_R = 10;
-	   public final int SPACE = 15;
-	   
-	   public final Color TILE_COLOR = Colors.CORN_SILK;
 	   
 	   public DominoTableView()
 	   {
