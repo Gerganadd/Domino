@@ -1,5 +1,6 @@
 package dataStructures;
 
+import interfaces.Iterator;
 import interfaces.List;
 
 public class LinkedList<T> implements List<T>
@@ -185,5 +186,35 @@ public class LinkedList<T> implements List<T>
 		
 		if(index > lenght)
 			throw new IllegalArgumentException("index must be less than the length of list!");
+	}
+	
+	public Iterator<T> getIterator()
+	{
+		return new LinkedListIterator();
+	}
+	
+	private class LinkedListIterator implements Iterator<T>
+	{
+		private Node<T> current;
+		
+		LinkedListIterator()
+		{
+			current = linkedList;
+		}
+
+		@Override
+		public boolean hasNext() 
+		{
+			return current != null;
+		}
+
+		@Override
+		public T next() 
+		{
+			T result = current.data;
+			current = current.next;
+			return result;
+		}
+		
 	}
 }
