@@ -4,18 +4,21 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+import dataStructures.LinkedList;
+import domino.DominoPlayer;
 import domino.DominoTable;
 import domino.DominoTile;
 import views.Colors;
 import views.DominoTableView;
+import views.PlayerView;
 
 public class TestGUI 
 {
 	
-	public final static int BOARD_WIDTH = 900;
-	public final static int BOARD_HIGHT = 600;
+	public final static int BOARD_WIDTH = DominoTableView.BOARD_WIDTH; // 900
+	public final static int BOARD_HIGHT = DominoTableView.BOARD_HIGHT; // 700
 	
-	public final static Color JFRAME_BACKGROUND = Colors.LIGHT_SEA_GREEN;
+	public final static Color JFRAME_BACKGROUND = Colors.MEDIUM_SEA_GREEN;
 	
 	public static void main(String[] args) 
 	{
@@ -32,6 +35,15 @@ public class TestGUI
 		gameBoard.addLeft(tile2);
 			  
 		DominoTableView board = new DominoTableView(gameBoard);
+		
+		LinkedList<DominoTile> tilesOfPlayer = new LinkedList();
+		tilesOfPlayer.add(new DominoTile(1,1));
+		tilesOfPlayer.add(new DominoTile(2,2));
+		tilesOfPlayer.add(new DominoTile(3,3));
+		
+		DominoPlayer dominoPlayer = new DominoPlayer("Pesho", tilesOfPlayer, gameBoard);
+		PlayerView player = new PlayerView(dominoPlayer);
+		
 		JFrame app = new JFrame("Domino");
 		      
 		app.getContentPane().setBackground( JFRAME_BACKGROUND );
@@ -40,6 +52,7 @@ public class TestGUI
       	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.setVisible(true);
       
+		app.add(player);
 		app.add(board);
 		      
 		app.repaint();
