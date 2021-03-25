@@ -1,8 +1,10 @@
 package tests;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import dataStructures.LinkedList;
 import domino.DominoPlayer;
@@ -40,6 +42,7 @@ public class TestGUI
 		tilesOfPlayer.add(new DominoTile(1,1));
 		tilesOfPlayer.add(new DominoTile(2,2));
 		tilesOfPlayer.add(new DominoTile(3,3));
+		tilesOfPlayer.add(new DominoTile(4,4));
 		
 		DominoPlayer dominoPlayer = new DominoPlayer("Pesho", tilesOfPlayer, gameBoard);
 		PlayerView player = new PlayerView(dominoPlayer);
@@ -47,13 +50,28 @@ public class TestGUI
 		JFrame app = new JFrame("Domino");
 		      
 		app.getContentPane().setBackground( JFRAME_BACKGROUND );
+		app.setLayout(null);
 		app.setLocationRelativeTo(null);
       	app.setBounds(100, 100, BOARD_WIDTH, BOARD_HIGHT);
       	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.setVisible(true);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.setBounds(0, 0, BOARD_WIDTH, BOARD_HIGHT);
+		panel.setBackground(Color.black);
+		
+		//panel.add(player);
+		//panel.add(board);
+		panel.add(player, BorderLayout.SOUTH);
+		panel.add(board, BorderLayout.CENTER);
+		
+		app.add(panel);
+		//app.pack();
       
-		app.add(player);
-		app.add(board);
+		//app.add(player);
+		//app.add(board);
+		//app.pack();
 		      
 		app.repaint();
 		
