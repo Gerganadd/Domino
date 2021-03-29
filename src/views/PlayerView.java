@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -50,6 +51,7 @@ public class PlayerView extends JComponent
 		super.paintComponent(g);
 		
 		String nickname = this.player.getNickname();
+		g.setFont(new Font("Serif", Font.PLAIN, 18));
 		g.drawString(nickname, DEFAULT_POINT_Y, DEFAULT_POINT_Y + SPACE);
 		
 		LinkedList playersTiles = this.player.getTiles();
@@ -68,12 +70,12 @@ public class PlayerView extends JComponent
 		
 	}
 	
-	 private void drawPoint(int pointX, int pointY, Graphics2D g)
+	 private void drawPoint(int pointX, int pointY, Graphics g)
 	   {
 		   g.fillOval(pointX, pointY, POINT_R, POINT_R);
 	   }
 	   
-	   private void makePointsOnTile(int tileX, int tileY, DominoTile tile, Graphics2D g)
+	   private void makePointsOnTile(int tileX, int tileY, DominoTile tile, Graphics g)
 	   {
 		   char[][] points = tile.makeTile();
 		   g.setColor(Color.BLACK);
@@ -95,7 +97,7 @@ public class PlayerView extends JComponent
 		   }
 	   }
 	   
-	   private void drawTile(int tileX, int tileY, Graphics2D g)
+	   private void drawTile(int tileX, int tileY, Graphics g)
 	   {
 		   g.setColor(TILE_COLOR);
 		   g.fill3DRect(tileX, tileY, TILE_HIGHT, TILE_WIDTH, true);
